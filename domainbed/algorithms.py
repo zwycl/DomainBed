@@ -1283,7 +1283,7 @@ class SupConLoss(nn.Module):
 class SupContrast(Algorithm):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
-        super(ERM, self).__init__(input_shape, num_classes, num_domains,
+        super(SupContrast, self).__init__(input_shape, num_classes, num_domains,
                                   hparams)
         self.featurizer = networks.Featurizer(input_shape, self.hparams)
         self.classifier = networks.Classifier(
