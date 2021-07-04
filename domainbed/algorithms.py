@@ -1302,7 +1302,9 @@ class SupContrast(Algorithm):
         all_x = torch.cat([x for x,y in minibatches])
         all_y = torch.cat([y for x,y in minibatches])
         sup_loss = SupConLoss()
-        sup_loss(self.predict(all_x), all_y)
+        pred_x = self.predict(all_x)
+        pred_x.unsqueeze_(1)
+        sup_loss(pred_x, all_y)
 
         self.optimizer.zero_grad()
         sup_loss.backward()
