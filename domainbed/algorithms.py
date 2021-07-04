@@ -1304,10 +1304,10 @@ class SupContrast(Algorithm):
         sup_loss = SupConLoss()
         pred_x = self.predict(all_x)
         pred_x.unsqueeze_(1)
-        sup_loss(pred_x, all_y)
+        loss = sup_loss(pred_x, all_y)
 
         self.optimizer.zero_grad()
-        sup_loss.backward()
+        loss.backward()
         self.optimizer.step()
 
         return {'loss': sup_loss.item()}
